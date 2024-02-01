@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyled = createGlobalStyle`
 /*Reset*/
 :root {
   --main: #17a1f1;
@@ -22,6 +25,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background-color: var(--gray);
 }
 
 body,
@@ -180,3 +184,5 @@ button,
 svg path {
   transition: 0.3s;
 }
+
+`;

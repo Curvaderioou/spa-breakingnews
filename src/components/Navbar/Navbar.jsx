@@ -1,16 +1,17 @@
+/* eslint-disable no-unused-vars */
 import logo from "../../images/LogoBN.png";
-import "./Navbar.css";
+import { Button, ImageLogo, InputNav, Nav } from "./NavbarStyled";
 export function Navbar() {
   return (
     <>
-      <nav>
-        <div className="input-search-space">
+      <Nav>
+        <InputNav className="input-search-space">
           <i className="bi bi-search"></i>
           <input type="text" placeholder="Pesquise por título" />
-        </div>
-        <img src={logo} alt="Logo Breaking News" />
-        <button>Entrar</button>
-      </nav>
+        </InputNav>
+        <ImageLogo src={logo} alt="Logo Breaking News" />
+        <Button>Entrar</Button>
+      </Nav>
     </>
   );
 }
