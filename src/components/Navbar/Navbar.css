@@ -6,7 +6,7 @@ nav {
   padding: 0 20px;
   position: fixed;
   top: 0;
-  background-color: #fff;
+  background-color: var(--light);
   z-index: 1;
   box-shadow: 0px 0px 5px #929292;
 }
@@ -16,8 +16,8 @@ nav img {
 .input-search-space {
   position: relative;
   border-radius: 3px;
-  border: 1px solid #dfdfdf;
-  background-color: #f5f5f5;
+  border: 1px solid var(--gray);
+  background-color: var(--gray);
 }
 .input-search-space i {
   position: absolute;
@@ -30,11 +30,25 @@ nav img {
   border: none;
   border-radius: 2px;
   outline: none;
-  background-color: #f5f5f5;
+  background-color: var(--gray);
   border: 1px solid transparent;
   padding: 5px 10px;
   padding-right: 25px;
 }
 .input-search-space input:focus {
-  border: 1px solid #0a95e6;
+  border: 1px solid var(--main);
+}
+
+nav button {
+  background-color: var(--main);
+  border-radius: 3px;
+  color: var(--light);
+  padding: 4px 20px;
+  border: 1px solid var(--main);
+  max-width: fit-content;
+  text-transform: uppercase;
+}
+nav button:hover {
+  background-color: var(--light);
+  color: var(--main);
 }

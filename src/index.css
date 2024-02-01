@@ -1,5 +1,10 @@
 /*Reset*/
-
+:root {
+  --main: #17a1f1;
+  --light: #fff;
+  --gray: #f1f1f1;
+  --dark: #000;
+}
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -67,14 +72,11 @@ button {
 }
 
 button {
-  padding: 0.75em 1em;
+  padding: 0;
   line-height: inherit;
   border-radius: 0;
   background-color: transparent;
-}
-
-button * {
-  pointer-events: none;
+  cursor: pointer;
 }
 
 img,
@@ -171,4 +173,10 @@ button {
 }
 hr {
   border: none;
+}
+
+a,
+button,
+svg path {
+  transition: 0.3s;
 }
