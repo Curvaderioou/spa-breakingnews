@@ -1,27 +1,35 @@
 import { TextLimit } from "../TextLimit/TextLimit";
-import { ArticleNews, CardContainer, CardFooter } from "./CardStyled";
+import {
+  ArticleNews,
+  CardContainer,
+  CardFooter,
+  CardHeader,
+} from "./CardStyled";
 
 /* eslint-disable react/prop-types */
 export function Card(props) {
+  console.log(props);
   return (
-    <CardContainer>
-      <ArticleNews>
+    <CardContainer top={props.top}>
+      <ArticleNews top={props.top}>
         <div>
-          <h2>{props.title}</h2>
-          <img src={props.banner} alt="Imagem" />
+          <CardHeader top={props.top}>
+            <h2>{props.title}</h2>
+            <TextLimit text={props.text} limit={150} />
+          </CardHeader>
+          <CardFooter>
+            <div>
+              <i className="bi bi-hand-thumbs-up"></i>
+              <span>{props.likes?.length}</span>
+            </div>
+            <div>
+              <i className="bi bi-chat"></i>
+              <span>{props.comments?.length}</span>
+            </div>
+          </CardFooter>
         </div>
-        <TextLimit text={props.text} limit={150} />
+        <img src={props.banner} alt="Imagem" />
       </ArticleNews>
-      <CardFooter>
-        <div>
-          <i className="bi bi-hand-thumbs-up"></i>
-          <span>{props.likes}</span>
-        </div>
-        <div>
-          <i className="bi bi-chat"></i>
-          <span>{props.comments}</span>
-        </div>
-      </CardFooter>
     </CardContainer>
   );
 }

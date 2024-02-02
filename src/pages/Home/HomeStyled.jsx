@@ -9,3 +9,9 @@ export const HomeBody = styled.section`
   align-items: center;
   gap: 1rem;
 `;
+
+export const HomeHeader = styled.section`
+  max-width: 1200px;
+  padding: 50px 20px 0px;
+  margin: 0 auto;
+`;
