@@ -1,70 +1,59 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
-  /* padding: 20px; */
-  max-width: ${(props) => (props.top ? "inherit" : "570px")};
-  width: 100%;
-  height: 100%;
   background-color: var(--light);
+  position: relative;
   border-radius: 0.3rem;
-  /* padding: 1rem; */
-  box-shadow: 0px 0px 12px #cfcfcf;
+  height: 100%;
+  max-height: 360px;
+  box-shadow: 0px 0px 10px #b3b3b3;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0px 0px 15px #777777;
+    transform: translateY(-5px);
+  }
 `;
+
 export const ArticleNews = styled.article`
   display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  div {
+  & > div {
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
   }
-
   img {
-    max-width: ${(props) => (props.top ? "350px" : "220px")};
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
     border-radius: 0 0.3rem 0.3rem 0;
-  }
-  p {
-    font-size: ${(props) => (props.top ? "1.3rem" : "1rem")};
-    text-align: end;
+    width: 40%;
+    height: 100%;
+    max-height: 360px;
   }
 `;
 
 export const CardHeader = styled.article`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
   gap: 1rem;
-  padding: 1rem;
-
+  height: 100%;
   h2 {
-    font-size: ${(props) => (props.top ? "2rem" : "1.4rem")};
-    text-align: end;
-    max-width: ${(props) => (props.top ? "none" : "300px!important")};
     line-height: 1.2em;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: ${(props) => (props.top ? "2.2rem" : "1.1rem")};
+  }
+  p {
+    font-size: ${(props) => (props.top ? "1.2rem" : ".9rem")};
   }
 `;
 
 export const CardFooter = styled.article`
   display: flex;
-  gap: 15px;
+  gap: 1rem;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
   div {
     display: flex;
-    gap: 3px;
-    align-items: center;
+    gap: 5px;
   }
 `;
