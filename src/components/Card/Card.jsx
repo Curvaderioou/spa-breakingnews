@@ -8,14 +8,13 @@ import {
 
 /* eslint-disable react/prop-types */
 export function Card(props) {
-  console.log(props);
   return (
     <CardContainer top={props.top}>
       <ArticleNews top={props.top}>
         <div>
           <CardHeader top={props.top}>
             <h2>{props.title}</h2>
-            <TextLimit text={props.text} limit={100} />
+            <TextLimit text={props.text} limit={props.top ? 300 : 100} />
           </CardHeader>
           <CardFooter>
             <div>

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { Outlet } from "react-router-dom";
 import logo from "../../images/LogoBN.png";
 import { Button, ImageLogo, InputNav, Nav } from "./NavbarStyled";
 export function Navbar() {
@@ -12,6 +13,7 @@ export function Navbar() {
         <ImageLogo src={logo} alt="Logo Breaking News" />
         <Button>Entrar</Button>
       </Nav>
+      <Outlet />
     </>
   );
 }

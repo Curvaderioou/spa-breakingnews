@@ -27,6 +27,7 @@ export const ArticleNews = styled.article`
     border-radius: 0 0.3rem 0.3rem 0;
     width: 40%;
     height: 100%;
+    margin-left: auto;
     max-height: 360px;
   }
 `;
