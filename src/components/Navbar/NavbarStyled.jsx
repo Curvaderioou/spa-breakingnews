@@ -23,6 +23,12 @@ export const InputNav = styled.div`
     right: 5px;
     top: 50%;
     transform: translate(0, -50%);
+    transition: all.3s;
+    padding: 3px;
+  }
+  i:hover {
+    color: var(--main);
+    filter: drop-shadow(0px 0px 2px var(--main));
   }
   input {
     padding: 5px;
@@ -40,7 +46,8 @@ export const InputNav = styled.div`
 `;
 
 export const ImageLogo = styled.img`
-  max-width: 120px;
+  max-width: 140px;
+  transition: all.3s;
 `;
 
 export const Button = styled.button`
@@ -56,4 +63,14 @@ export const Button = styled.button`
     background-color: var(--light);
     color: var(--main);
   }
+`;
+
+export const ErrorSpan = styled.span`
+  background-color: #ffaeae;
+  color: #9e0000;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
 `;

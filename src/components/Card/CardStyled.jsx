@@ -11,7 +11,7 @@ export const CardContainer = styled.section`
   transition: 0.3s;
   &:hover {
     box-shadow: 0px 0px 15px #777777;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 `;
 
