@@ -50,27 +50,12 @@ export const ImageLogo = styled.img`
   transition: all.3s;
 `;
 
-export const Button = styled.button`
-  background-color: var(--main);
-  border-radius: 3px;
-  color: var(--light);
-  padding: 4px 20px;
-  border: 1px solid var(--main);
-  max-width: fit-content;
-  text-transform: uppercase;
-
-  &:hover {
-    background-color: var(--light);
-    color: var(--main);
-  }
-`;
-
 export const ErrorSpan = styled.span`
-  background-color: #ffaeae;
+  background-color: #ffd7d7;
   color: #9e0000;
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 7px;
 `;

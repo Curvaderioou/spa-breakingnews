@@ -25,10 +25,9 @@ export const ArticleNews = styled.article`
   }
   img {
     border-radius: 0 0.3rem 0.3rem 0;
+    /* height: 100%; */
     width: 40%;
-    height: 100%;
     margin-left: auto;
-    max-height: 360px;
   }
 `;
 
@@ -50,9 +49,6 @@ export const CardHeader = styled.article`
 export const CardFooter = styled.article`
   display: flex;
   gap: 1rem;
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
   div {
     display: flex;
     gap: 5px;
