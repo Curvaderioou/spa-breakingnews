@@ -38,6 +38,7 @@ export default function Home() {
           banner={topNews.banner}
           likes={topNews.likes}
           comments={topNews.comments}
+          id={topNews.id}
         />
       </HomeHeader>
       <HomeBody>
