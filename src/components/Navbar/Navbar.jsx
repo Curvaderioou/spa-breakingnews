@@ -54,6 +54,7 @@ export function Navbar() {
 
   useEffect(() => {
     if (Cookies.get("token")) findUserLogged();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
