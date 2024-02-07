@@ -26,3 +26,12 @@ export function getAllNewsByUser() {
   });
   return response;
 }
+
+export function newsById(id) {
+  const response = axios.get(`${baseURL}/news/byIdNews/${id}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+}

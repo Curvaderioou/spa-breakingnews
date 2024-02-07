@@ -10,6 +10,7 @@ import { GlobalStyled } from "./GlobalStyled.jsx";
 import { Authentication } from "./pages/Authentication/Authentication.jsx";
 import { Profile } from "./pages/Profile/Profile.jsx";
 import UserProvider from "./Context/UserContent.jsx";
+import { News } from "./pages/News/News.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/news/:id",
+        element: <News />,
       },
     ],
   },
