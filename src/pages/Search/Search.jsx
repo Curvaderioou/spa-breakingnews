@@ -45,6 +45,7 @@ export function Search() {
               banner={item.banner}
               likes={item.likes}
               comments={item.comments}
+              id={item.id}
             />
           ))}
         </SearchNews>
