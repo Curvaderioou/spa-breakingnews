@@ -1,0 +1,37 @@
+import axios from "axios";
+import Cookies from "js-cookie";
+
+const baseURL = "https://api-breakingnews-xktz.onrender.com";
+
+export function signup(data) {
+  delete data.confirmPassword;
+  const body = {
+    ...data,
+    username: generateUserName(data.name),
+    avatar:
+      "https://imgb.ifunny.co/images/951d3730ac2e43f9426085daa63c01573bb0344fc3ddeeecf7e6239457c169a0_1.jpg",
+    background: "https://i.imgur.com/XbRg9D7.png",
+  };
+  const response = axios.post(`${baseURL}/user/create`, body);
+  return response;
+}
+
+export function signin(data) {
+  const response = axios.post(`${baseURL}/auth/login`, data);
+  return response;
+}
+
+export function userLogged() {
+  const response = axios.get(`${baseURL}/user/findById`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+}
+
+function generateUserName(name) {
+  const nameLowerCaseWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
+  const randomNumber = Math.floor(Math.random() * 1000);
+  return `${nameLowerCaseWithoutSpaces}${randomNumber}`;
+}

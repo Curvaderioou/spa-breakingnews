@@ -22,11 +22,16 @@ export const ArticleNews = styled.article`
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
   }
   img {
     border-radius: 0 0.3rem 0.3rem 0;
     /* height: 100%; */
-    width: 40%;
+    max-width: 250px;
+    min-width: 250px;
+    object-fit: cover;
+    object-position: center;
     margin-left: auto;
   }
 `;
@@ -35,7 +40,7 @@ export const CardHeader = styled.article`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 100%;
+  /* height: 100%; */
   h2 {
     line-height: 1.2em;
     font-weight: 700;

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import styled from "styled-components";
 
 export const Nav = styled.nav`
@@ -58,4 +59,30 @@ export const ErrorSpan = styled.span`
   justify-content: center;
   font-size: 1rem;
   border-radius: 7px;
+`;
+
+export const UserLoggedSpace = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  gap: 1rem;
+
+  h2 {
+    font-size: 1.1rem;
+    color: var(--main);
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      color: #035caf;
+    }
+  }
+  i {
+    font-size: 1.5rem;
+    color: var(--main);
+    cursor: pointer;
+    &:hover {
+      color: #035caf;
+    }
+  }
 `;

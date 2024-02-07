@@ -8,6 +8,8 @@ import { Search } from "./pages/Search/Search.jsx";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage.jsx";
 import { GlobalStyled } from "./GlobalStyled.jsx";
 import { Authentication } from "./pages/Authentication/Authentication.jsx";
+import { Profile } from "./pages/Profile/Profile.jsx";
+import UserProvider from "./Context/UserContent.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,10 @@ const router = createBrowserRouter([
         path: "/search/:title",
         element: <Search />,
       },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
     ],
   },
   {
@@ -34,6 +40,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GlobalStyled />
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );

@@ -12,7 +12,7 @@ export function Search() {
   async function search() {
     try {
       const newsApi = await searchNews(title);
-      setNews(newsApi.data.results);
+      setNews(newsApi.data.foundNews);
     } catch (error) {
       console.log(error);
       setNews([]);
@@ -21,7 +21,6 @@ export function Search() {
 
   useEffect(() => {
     search();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
   return (

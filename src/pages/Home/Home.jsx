@@ -6,6 +6,7 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { getAllNews, getTopNews } from "../../services/newsServices.js";
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 export default function Home() {
   const [news, setNews] = useState([]);
