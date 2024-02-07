@@ -75,17 +75,17 @@ export function Navbar() {
         <Link to="/">
           <ImageLogo src={logo} alt="Logo Breaking News" />
         </Link>
-        {user ? (
+        {!user || Cookies.get("token") == undefined ? (
+          <Link to="/auth">
+            <Button type="button" text="Entrar"></Button>
+          </Link>
+        ) : (
           <UserLoggedSpace>
             <Link to={"/profile"}>
               <h2>{user.name}</h2>
             </Link>
             <i className="bi bi-box-arrow-right" onClick={signout}></i>
           </UserLoggedSpace>
-        ) : (
-          <Link to="/auth">
-            <Button type="button" text="Entrar"></Button>
-          </Link>
         )}
       </Nav>
       {errors.title && <ErrorSpan>{errors.title.message}</ErrorSpan>}
