@@ -7,6 +7,10 @@ import { CommentContainer, CommentInfoUser } from "./CommentStyled";
 export function Comment(props) {
   const [userData, setUserData] = useState({});
 
+  async function updateComment() {
+    console.log("azar");
+  }
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -35,6 +39,7 @@ export function Comment(props) {
       <span>
         {dia}/{mes}/{ano} - {hora}:{min}
       </span>
+      <i className="bi bi-three-dots-vertical" onClick={updateComment}></i>
     </CommentContainer>
   );
 }

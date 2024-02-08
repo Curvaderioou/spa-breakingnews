@@ -15,13 +15,11 @@ export const CommentSection = styled.section`
   margin-bottom: 30px;
   form {
     position: relative;
-    i {
+    button {
       position: absolute;
       right: 10px;
       top: 50%;
-      padding: 2px 5px;
-      padding-right: 7px;
-      padding-bottom: 0;
+      padding: 0 6px;
       cursor: pointer;
       transform: translateY(-50%);
       &:hover {

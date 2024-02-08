@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -6,18 +7,26 @@ import { HomeHeader } from "../Home/HomeStyled";
 import { Card } from "../../components/Card/Card";
 import { Comment } from "../../components/Comment/Comment";
 import { CommentSection, InputComment } from "./NewsStyled";
+import { z } from "zod";
+
+// Schema de validação utilizando Zod
+const commentSchema = z
+  .string()
+  .trim()
+  .min(1, "O comentário não pode estar vazio");
 
 export function News() {
   const { id } = useParams();
   const [news, setNews] = useState({});
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o envio do formulário
 
   async function getNewsById() {
     try {
       const newsResponse = await newsById(id);
       setNews(newsResponse.data);
-      setComments(newsResponse.data.comments || []); // Atualiza a lista de comentários
+      setComments(newsResponse.data.comments || []);
     } catch (error) {
       console.error("Erro ao obter a notícia:", error);
     }
@@ -26,12 +35,21 @@ export function News() {
   async function handleCommentSubmit(event) {
     event.preventDefault();
 
+    if (isSubmitting) return; // Verifica se o formulário já foi enviado
+
     try {
+      setIsSubmitting(true); // Define que o formulário está sendo enviado
+
+      // Valida o comentário utilizando o schema
+      commentSchema.parse(comment);
+
       await postComment(id, comment);
-      await getNewsById(); // Atualiza a notícia para buscar os comentários atualizados
+      await getNewsById();
       setComment("");
     } catch (error) {
-      console.error("Erro ao enviar o comentário:", error);
+      console.error("Erro ao enviar o comentário:", error.message);
+    } finally {
+      setIsSubmitting(false); // Define que o envio do formulário foi concluído
     }
   }
 
@@ -71,7 +89,10 @@ export function News() {
             value={comment}
             onChange={(event) => setComment(event.target.value)}
           ></InputComment>
-          <button type="submit">Enviar</button>
+          <button type="submit" disabled={isSubmitting}>
+            Enviar
+          </button>{" "}
+          {/* Desabilita o botão durante o envio */}
         </form>
       </CommentSection>
     </>

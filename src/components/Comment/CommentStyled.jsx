@@ -19,6 +19,7 @@ export const CommentContainer = styled.div`
     left: 0;
     transform: translate(0%, -100%);
   }
+
   position: relative;
 `;
 
