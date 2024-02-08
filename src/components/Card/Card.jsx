@@ -12,12 +12,15 @@ import {
 export function Card(props) {
   return (
     <Link to={"/news/" + props.id}>
-      <CardContainer top={props.top}>
-        <ArticleNews top={props.top}>
+      <CardContainer top={props.top} main={props.main}>
+        <ArticleNews top={props.top} main={props.main}>
           <div>
             <CardHeader top={props.top}>
               <h2>{props.title}</h2>
-              <TextLimit text={props.text} limit={props.top ? 250 : 100} />
+              <TextLimit
+                text={props.text}
+                limit={props.main ? Infinity : 100}
+              />
             </CardHeader>
             <CardFooter>
               <div>

@@ -35,3 +35,22 @@ export function newsById(id) {
   });
   return response;
 }
+
+export async function postComment(newsId, message) {
+  try {
+    // Fazer uma solicitação para enviar o comentário para o backend
+    const response = await axios.patch(
+      `${baseURL}/news/${newsId}/comment`,
+      { message },
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+    return response.data; // retornar os dados da resposta se necessário
+  } catch (error) {
+    console.error("Erro ao enviar o comentário:", error);
+    throw error; // lançar o erro para que ele seja tratado no componente News
+  }
+}

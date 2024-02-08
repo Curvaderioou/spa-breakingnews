@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -7,7 +8,7 @@ export function signup(data) {
   delete data.confirmPassword;
   const body = {
     ...data,
-    username: generateUserName(data.name),
+    username: generateUserName(data.name, 14),
     avatar:
       "https://imgb.ifunny.co/images/951d3730ac2e43f9426085daa63c01573bb0344fc3ddeeecf7e6239457c169a0_1.jpg",
     background: "https://i.imgur.com/XbRg9D7.png",
@@ -30,8 +31,44 @@ export function userLogged() {
   return response;
 }
 
-function generateUserName(name) {
-  const nameLowerCaseWithoutSpaces = name.replace(/\s/g, "").toLowerCase();
+export async function findUserById(id) {
+  try {
+    const response = await axios.get(`${baseURL}/user/findById/${id}`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+    return response.data; // Return only the data part of the response
+  } catch (error) {
+    throw error; // Rethrow the error for the caller to handle
+  }
+}
+
+function generateUserName(name, maxLength) {
+  // Split the name by spaces
+  const nameParts = name.split(" ");
+
+  // Process each part of the name
+  let processedName = "";
+  for (let i = 0; i < nameParts.length; i++) {
+    const part = nameParts[i];
+    if (processedName.length + part.length <= maxLength) {
+      processedName += part;
+    } else {
+      // If adding the current part exceeds the maxLength, stop adding parts
+      break;
+    }
+  }
+
+  // Lowercase and remove spaces
+  const nameLowerCaseWithoutSpaces = processedName
+    .toLowerCase()
+    .replace(/\s/g, "");
+
+  // Generate random number
   const randomNumber = Math.floor(Math.random() * 1000);
-  return `${nameLowerCaseWithoutSpaces}${randomNumber}`;
+
+  // Concatenate username and limit its length
+  const userName = `${nameLowerCaseWithoutSpaces}${randomNumber}`;
+  return userName.slice(0, maxLength);
 }

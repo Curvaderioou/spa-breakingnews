@@ -4,14 +4,15 @@ export const CardContainer = styled.section`
   background-color: var(--light);
   position: relative;
   border-radius: 0.3rem;
+  width: 100%;
   height: 100%;
-  max-height: 360px;
+  max-height: ${(props) => (props.main ? "inherit" : "360px")};
   box-shadow: 0px 0px 10px #b3b3b3;
-  cursor: pointer;
+  cursor: ${(props) => (props.main ? "default" : "pointer")};
   transition: 0.3s;
   &:hover {
-    box-shadow: 0px 0px 15px #777777;
-    transform: translateY(-3px);
+    box-shadow: ${(props) => (props.main ? "0" : "0px 0px 15px #777777")};
+    transform: ${(props) => (props.main ? "0" : "translateY(-3px)")};
   }
 `;
 
@@ -28,8 +29,8 @@ export const ArticleNews = styled.article`
   img {
     border-radius: 0 0.3rem 0.3rem 0;
     /* height: 100%; */
-    max-width: 250px;
-    min-width: 250px;
+    max-width: ${(props) => (props.main ? "100%" : "250px")};
+    min-width: ${(props) => (props.main ? "50%" : "250px")};
     object-fit: cover;
     object-position: center;
     margin-left: auto;

@@ -20,10 +20,6 @@ export default function Home() {
     setTopNews(topNewsResponse.data.news);
   }
 
-  function getCard() {
-    console.log("Loading");
-  }
-
   useEffect(() => {
     findNews();
   }, []);
