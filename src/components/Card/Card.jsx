@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { TextLimit } from "../TextLimit/TextLimit";
 import {
   ArticleNews,
@@ -7,11 +7,22 @@ import {
   CardFooter,
   CardHeader,
 } from "./CardStyled";
+import Cookies from "js-cookie";
 
 /* eslint-disable react/prop-types */
 export function Card(props) {
+  const navigate = useNavigate();
+
+  function handleCommentClick() {
+    if (Cookies.get("token")) {
+      navigate(`/news/${props.id}`);
+    } else {
+      navigate("/auth");
+    }
+  }
+
   return (
-    <Link to={"/news/" + props.id}>
+    <div onClick={handleCommentClick}>
       <CardContainer top={props.top} main={props.main}>
         <ArticleNews top={props.top} main={props.main}>
           <div>
@@ -36,6 +47,6 @@ export function Card(props) {
           <img src={props.banner} alt="Imagem" />
         </ArticleNews>
       </CardContainer>
-    </Link>
+    </div>
   );
 }

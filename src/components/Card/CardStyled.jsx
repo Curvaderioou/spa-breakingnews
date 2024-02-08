@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const CardContainer = styled.section`
   background-color: var(--light);
   position: relative;
-  border-radius: 0.3rem;
+  border-radius: ${(props) => (props.main ? ".3rem .3rem 0 0" : ".3rem")};
   width: 100%;
   height: 100%;
   max-height: ${(props) => (props.main ? "inherit" : "360px")};
@@ -27,7 +27,8 @@ export const ArticleNews = styled.article`
     gap: 1rem;
   }
   img {
-    border-radius: 0 0.3rem 0.3rem 0;
+    border-radius: ${(props) =>
+      props.main ? "0 .3rem 0 0" : "0 .3rem .3rem 0"};
     /* height: 100%; */
     max-width: ${(props) => (props.main ? "100%" : "250px")};
     min-width: ${(props) => (props.main ? "50%" : "250px")};

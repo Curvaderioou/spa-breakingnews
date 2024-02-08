@@ -7,10 +7,11 @@ export const CommentSection = styled.section`
   gap: 45px;
   max-width: 1160px;
   margin: 0 auto;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   padding: 20px;
+  padding-top: 40px;
   box-shadow: 0px 0px 10px #b3b3b3;
-  border-radius: 0.3rem;
+  border-radius: 0 0 0.3rem 0.3rem;
   margin-bottom: 30px;
   form {
     position: relative;
