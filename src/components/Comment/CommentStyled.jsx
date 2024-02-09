@@ -19,7 +19,14 @@ export const CommentContainer = styled.div`
     left: 0;
     transform: translate(0%, -100%);
   }
-
+  & > i {
+    color: #aaaaaa;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: #000;
+    }
+  }
   position: relative;
 `;
 
@@ -38,5 +45,23 @@ export const CommentInfoUser = styled.div`
     bottom: 0;
     left: 0;
     transform: translateY(100%);
+  }
+`;
+export const CommentOptions = styled.div`
+  position: absolute;
+  right: -5px;
+  border-radius: 0.3rem;
+  transform: translate(100%);
+  background-color: var(--gray);
+  padding: 5px 10px;
+  display: flex;
+  /* flex-direction: column; */
+  gap: 15px;
+  i {
+    color: #5f5f5f;
+    &:hover {
+      cursor: pointer;
+      color: #000;
+    }
   }
 `;

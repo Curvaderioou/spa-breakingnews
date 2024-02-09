@@ -48,9 +48,27 @@ export async function postComment(newsId, message) {
         },
       }
     );
-    return response.data; // retornar os dados da resposta se necessário
+    return response.data;
   } catch (error) {
     console.error("Erro ao enviar o comentário:", error);
-    throw error; // lançar o erro para que ele seja tratado no componente News
+    throw error;
+  }
+}
+
+export async function updateComment(newsId, commentId, updatedMessage) {
+  try {
+    const response = await axios.patch(
+      `${baseURL}/news/${newsId}/${commentId}/comment`,
+      { updatedMessage }, // Usar updatedMessage em vez de message
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao enviar o comentário:", error);
+    throw error;
   }
 }
