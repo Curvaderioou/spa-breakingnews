@@ -55,11 +55,10 @@ export async function postComment(newsId, message) {
   }
 }
 
-export async function updateComment(newsId, commentId, updatedMessage) {
+export async function deleteComment(newsId, commentId) {
   try {
-    const response = await axios.patch(
+    const response = await axios.delete(
       `${baseURL}/news/${newsId}/${commentId}/comment`,
-      { updatedMessage }, // Usar updatedMessage em vez de message
       {
         headers: {
           Authorization: `Bearer ${Cookies.get("token")}`,
@@ -68,7 +67,7 @@ export async function updateComment(newsId, commentId, updatedMessage) {
     );
     return response.data;
   } catch (error) {
-    console.error("Erro ao enviar o comentário:", error);
+    console.error("Erro ao excluir o comentário:", error);
     throw error;
   }
 }

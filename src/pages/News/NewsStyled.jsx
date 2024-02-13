@@ -6,7 +6,8 @@ export const CommentSection = styled.section`
   flex-direction: column;
   gap: 45px;
   max-width: 1160px;
-  margin: 0 auto;
+  width: calc(100% - 40px);
+  margin: 0 20px;
   /* margin-top: 1rem; */
   padding: 20px;
   padding-top: 40px;

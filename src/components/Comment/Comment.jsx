@@ -9,6 +9,7 @@ import {
 } from "./CommentStyled";
 import { UserContext } from "../../Context/UserContent";
 import Cookies from "js-cookie";
+import { deleteComment } from "../../services/newsServices";
 
 export function Comment(props) {
   const [userData, setUserData] = useState({});
@@ -25,8 +26,14 @@ export function Comment(props) {
     }
   }
 
-  async function updateComment() {}
-  async function deleteComment() {}
+  async function handleDeleteComment() {
+    try {
+      await deleteComment(props.newsId, props.id, user._id); // Chama a função de exclusão de comentário
+      props.onCommentDeleted(props.id); // Chama a função de callback para atualizar a lista de comentários
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function dotsInfo() {
     // Altera o estado de 'mostra' para o valor oposto
@@ -81,8 +88,10 @@ export function Comment(props) {
           <i className="bi bi-three-dots-vertical" onClick={dotsInfo}></i>
           {mostra && (
             <CommentOptions>
-              <i className="bi bi-pencil-fill" onClick={updateComment}></i>
-              <i className="bi bi-trash3-fill" onClick={deleteComment}></i>
+              <i
+                className="bi bi-trash3-fill"
+                onClick={handleDeleteComment}
+              ></i>
             </CommentOptions>
           )}
         </>

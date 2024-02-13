@@ -184,5 +184,9 @@ button,
 svg path {
   transition: 0.3s;
 }
-
+#root {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
 `;

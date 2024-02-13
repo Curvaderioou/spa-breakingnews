@@ -32,6 +32,10 @@ export function News() {
     }
   }
 
+  async function handleCommentDeleted(commentId) {
+    setComments(comments.filter((comment) => comment.id !== commentId)); // Remove o comentário da lista de comentários
+  }
+
   async function handleCommentSubmit(event) {
     event.preventDefault();
 
@@ -78,6 +82,8 @@ export function News() {
               text={comment.message}
               user={comment.userId}
               date={comment.createdAt}
+              newsId={id}
+              onCommentDeleted={handleCommentDeleted}
             />
           ))
         ) : (
