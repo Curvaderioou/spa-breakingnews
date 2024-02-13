@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { searchNews } from "../../services/newsServices";
 import { ContainerResults, SearchNews, TextResults } from "./SearchStyled";
@@ -28,7 +28,7 @@ export function Search() {
       <ContainerResults>
         <TextResults>
           <span>
-            {news.length
+            {Array.isArray(news) && news.length > 0
               ? `Encontramos ${news.length} ${
                   news.length > 1 ? "resultados" : "resultado"
                 } para: `
@@ -37,17 +37,21 @@ export function Search() {
           <h2>{title}</h2>
         </TextResults>
         <SearchNews>
-          {news.map((item) => (
-            <Card
-              key={item.id}
-              title={item.title}
-              text={item.text}
-              banner={item.banner}
-              likes={item.likes}
-              comments={item.comments}
-              id={item.id}
-            />
-          ))}
+          {Array.isArray(news) ? (
+            news.map((item) => (
+              <Card
+                key={item.id}
+                title={item.title}
+                text={item.text}
+                banner={item.banner}
+                likes={item.likes}
+                comments={item.comments}
+                id={item.id}
+              />
+            ))
+          ) : (
+            <p>Nenhum resultado encontrado</p>
+          )}
         </SearchNews>
       </ContainerResults>
     </>
