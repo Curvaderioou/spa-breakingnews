@@ -21,7 +21,6 @@ export function News() {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o envio do formulário
-  const [updateFlag, setUpdateFlag] = useState(false);
 
   async function getNewsById() {
     try {

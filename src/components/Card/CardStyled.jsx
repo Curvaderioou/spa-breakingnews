@@ -61,7 +61,6 @@ export const CardFooter = styled.article`
     gap: 5px;
     i:hover {
       cursor: pointer;
-      fill: #000;
     }
   }
 `;
