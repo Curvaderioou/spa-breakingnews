@@ -21,6 +21,7 @@ export function News() {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o envio do formulário
+  const [updateFlag, setUpdateFlag] = useState(false);
 
   async function getNewsById() {
     try {
@@ -32,8 +33,9 @@ export function News() {
     }
   }
 
-  async function handleCommentDeleted(commentId) {
-    setComments(comments.filter((comment) => comment.id !== commentId)); // Remove o comentário da lista de comentários
+  async function getNewsByIdAndUpdate() {
+    await getNewsById(); // Obtém as notícias atualizadas
+    setUpdateFlag(!updateFlag); // Força a atualização do componente
   }
 
   async function handleCommentSubmit(event) {
@@ -78,12 +80,13 @@ export function News() {
         {comments && comments.length > 0 ? (
           comments.map((comment) => (
             <Comment
-              key={comment.id}
+              key={comment.idComment}
+              idComment={comment.idComment}
               text={comment.message}
               user={comment.userId}
               date={comment.createdAt}
               newsId={id}
-              onCommentDeleted={handleCommentDeleted}
+              onCommentDeleted={getNewsByIdAndUpdate}
             />
           ))
         ) : (
@@ -96,7 +99,7 @@ export function News() {
             onChange={(event) => setComment(event.target.value)}
           ></InputComment>
           <button type="submit" disabled={isSubmitting}>
-            Enviar
+            {isSubmitting ? "Enviando..." : "Enviar"}
           </button>{" "}
           {/* Desabilita o botão durante o envio */}
         </form>

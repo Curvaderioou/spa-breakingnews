@@ -14,6 +14,7 @@ import { deleteComment } from "../../services/newsServices";
 export function Comment(props) {
   const [userData, setUserData] = useState({});
   const [mostra, setMostra] = useState(false); // Estado para controlar a exibição condicional
+  const [deleting, setDeleting] = useState(false);
 
   const { user, setUser } = useContext(UserContext);
 
@@ -28,10 +29,13 @@ export function Comment(props) {
 
   async function handleDeleteComment() {
     try {
-      await deleteComment(props.newsId, props.id, user._id); // Chama a função de exclusão de comentário
-      props.onCommentDeleted(props.id); // Chama a função de callback para atualizar a lista de comentários
+      setDeleting(true); // Define que o comentário está sendo apagado
+      await deleteComment(props.newsId, props.idComment);
+      props.onCommentDeleted(); // Chamando a função de callback
     } catch (error) {
       console.log(error);
+    } finally {
+      setDeleting(false); // Reseta o estado de 'deleting' quando o processo de exclusão do comentário é concluído
     }
   }
 
@@ -79,7 +83,7 @@ export function Comment(props) {
         <img src={userData.avatar} alt="foto do usuário" />
         <h5>@{userData.username}</h5>
       </CommentInfoUser>
-      <p>{props.text}</p>
+      <p>{deleting ? "Apagando comentário" : props.text}</p>
       <span>
         {dia}/{mes}/{ano} - {hora}:{min}
       </span>
