@@ -59,5 +59,9 @@ export const CardFooter = styled.article`
   div {
     display: flex;
     gap: 5px;
+    i:hover {
+      cursor: pointer;
+      fill: #000;
+    }
   }
 `;

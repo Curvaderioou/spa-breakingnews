@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const baseURL = "https://api-breakingnews-xktz.onrender.com";
-// const baseURL = "http://localhost:3001";
+// const baseURL = "https://api-breakingnews-xktz.onrender.com";
+const baseURL = "http://localhost:3001";
 
 export function getAllNews() {
   const response = axios.get(`${baseURL}/news`);
@@ -37,6 +37,23 @@ export function newsById(id) {
   return response;
 }
 
+export async function likeNews(newsId) {
+  try {
+    const response = await axios.patch(
+      `${baseURL}/news/${newsId}/like`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao curtir notícia:", error);
+    throw error;
+  }
+}
 export async function postComment(newsId, message) {
   try {
     // Fazer uma solicitação para enviar o comentário para o backend

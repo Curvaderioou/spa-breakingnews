@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { newsById, postComment } from "../../services/newsServices";
+import { newsById, postComment, likeNews } from "../../services/newsServices";
 import { HomeHeader } from "../Home/HomeStyled";
 import { Card } from "../../components/Card/Card";
 import { Comment } from "../../components/Comment/Comment";
@@ -33,11 +33,6 @@ export function News() {
     }
   }
 
-  async function getNewsByIdAndUpdate() {
-    await getNewsById(); // Obtém as notícias atualizadas
-    setUpdateFlag(!updateFlag); // Força a atualização do componente
-  }
-
   async function handleCommentSubmit(event) {
     event.preventDefault();
 
@@ -59,6 +54,10 @@ export function News() {
     }
   }
 
+  async function handleLikeUpdated() {
+    await getNewsById();
+  }
+
   useEffect(() => {
     getNewsById();
   }, [id]);
@@ -74,6 +73,8 @@ export function News() {
           banner={news.banner}
           likes={news.likes}
           comments={news.comments}
+          newsId={id}
+          onLikeUpdated={handleLikeUpdated} // Passa a função de atualização de likes
         />
       </HomeHeader>
       <CommentSection>
@@ -86,7 +87,7 @@ export function News() {
               user={comment.userId}
               date={comment.createdAt}
               newsId={id}
-              onCommentDeleted={getNewsByIdAndUpdate}
+              onCommentDeleted={getNewsById}
             />
           ))
         ) : (

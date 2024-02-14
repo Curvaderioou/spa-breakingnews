@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TextLimit } from "../TextLimit/TextLimit";
 import {
   ArticleNews,
@@ -8,15 +10,30 @@ import {
   CardHeader,
 } from "./CardStyled";
 import Cookies from "js-cookie";
+import { likeNews } from "../../services/newsServices";
 
-/* eslint-disable react/prop-types */
 export function Card(props) {
   const navigate = useNavigate();
+  const [likesCount, setLikesCount] = useState(props.likes?.length);
+
+  useEffect(() => {
+    setLikesCount(props.likes?.length);
+  }, [props.likes]);
+
+  async function handleLikeNews() {
+    try {
+      await likeNews(props.newsId);
+      // A chamada de API foi bem-sucedida, então podemos atualizar os likes
+      props.onLikeUpdated(); // Chama a função de atualização de likes fornecida como prop
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function handleCommentClick() {
-    if (Cookies.get("token")) {
+    if (Cookies.get("token") && !props.main) {
       navigate(`/news/${props.id}`);
-    } else {
+    } else if (!props.main) {
       navigate("/auth");
     }
   }
@@ -34,9 +51,10 @@ export function Card(props) {
               />
             </CardHeader>
             <CardFooter>
-              <div>
+              <div onClick={handleLikeNews}>
                 <i className="bi bi-hand-thumbs-up"></i>
-                <span>{props.likes?.length}</span>
+                {/* Mostra o número atualizado de likes */}
+                <span>{likesCount}</span>
               </div>
               <div>
                 <i className="bi bi-chat"></i>
