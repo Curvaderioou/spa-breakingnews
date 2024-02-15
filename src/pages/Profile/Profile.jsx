@@ -14,25 +14,30 @@ import {
 } from "./Profile.Styled";
 import { getAllNewsByUser } from "../../services/newsServices";
 import { Card } from "../../components/Card/Card";
+import { ProfileModal } from "../../components/ProfileModal/ProfileModal";
 
 export function Profile() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [news, setNews] = useState([]);
+  const [modal, setModal] = useState(false);
 
   async function findAllNewsByUser() {
     const newsResponse = await getAllNewsByUser();
     setNews(newsResponse.data.newsByUser);
   }
+  function handleModal() {
+    setModal(!modal);
+  }
 
   useEffect(() => {
     findAllNewsByUser();
-  }, []);
+  }, [user]);
 
   return (
     <ProfileContainer>
       <ProfileHeader>
         <ProfileIconEdit>
-          <i className="bi bi-pencil-square"></i>
+          <i className="bi bi-pencil-square" onClick={handleModal}></i>
         </ProfileIconEdit>
         <ProfileBackground src={user.background} />
         <ProfileUser>
@@ -46,6 +51,18 @@ export function Profile() {
           </ProfileIconAdd>
         </ProfileActions>
       </ProfileHeader>
+
+      {modal && (
+        <ProfileModal
+          id={user._id}
+          avatar={user.avatar}
+          name={user.name}
+          username={user.username}
+          background={user.background}
+          ok={handleModal}
+        />
+      )}
+
       <ProfileNews>
         {news.length === 0 && <h3>Você ainda não criou nenhuma notícia</h3>}
         {news.map((item) => {

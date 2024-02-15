@@ -45,6 +45,32 @@ export async function findUserById(id) {
   }
 }
 
+export async function updateUser(id, data) {
+  try {
+    const token = Cookies.get("token"); // Recuperar o token de Cookies
+
+    if (!token) {
+      throw new Error("Token not found"); // Lançar um erro se o token não for encontrado
+    }
+
+    const response = await axios.patch(`${baseURL}/user/update/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Incluir o token no cabeçalho da requisição
+      },
+    });
+
+    const updatedUser = response.data.userUpdated; // Obter os dados atualizados do usuário
+    const updatedToken = response.data.token; // Obter o token atualizados
+
+    // Atualizar o token no Cookies
+    Cookies.set("token", updatedToken, { expires: 7 });
+
+    return { user: updatedUser, token: updatedToken }; // Retornar tanto o usuário quanto o token
+  } catch (error) {
+    throw error; // Rejeitar o erro para o chamador lidar
+  }
+}
+
 function generateUserName(name, maxLength) {
   // Split the name by spaces
   const nameParts = name.split(" ");

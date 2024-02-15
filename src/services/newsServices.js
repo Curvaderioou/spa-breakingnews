@@ -83,10 +83,8 @@ export async function deleteComment(newsId, commentId) {
         },
       }
     );
-    // console.log(response);
     return response.data;
   } catch (error) {
-    console.log("deuerro", commentId);
     console.error("Erro ao excluir o comentário:", error);
     throw error;
   }
