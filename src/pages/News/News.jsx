@@ -11,6 +11,7 @@ import { z } from "zod";
 import { UserContext } from "../../Context/UserContent";
 import { findUserById, userLogged } from "../../services/userServices";
 import Cookies from "js-cookie";
+import { UpdateNewsModal } from "../../components/UpdateNewsModal/UpdateNewsModal";
 
 const commentSchema = z
   .string()
@@ -23,6 +24,7 @@ export function News() {
   const [news, setNews] = useState({});
   const [mostra, setMostra] = useState(false);
   const [mostraOpt, setMostraOpt] = useState(false);
+  const [updateModal, setUpdateModal] = useState(false);
   const [sure, setSure] = useState(false);
   const [user, setUser] = useState(UserContext);
   const [comment, setComment] = useState("");
@@ -96,12 +98,14 @@ export function News() {
     }, 3000);
   }
 
-  function handleUpdateNews() {}
+  function handleUpdateNews() {
+    setUpdateModal(!updateModal);
+  }
 
   useEffect(() => {
     getNewsById();
     if (Cookies.get("token")) findUserLogged();
-  }, [id]);
+  }, [id, news]);
 
   useEffect(() => {
     checkUser();
@@ -146,6 +150,15 @@ export function News() {
           <Sure>
             <h2>A notícia foi excluída!</h2>
           </Sure>
+        )}
+        {updateModal && (
+          <UpdateNewsModal
+            id={id}
+            title={news.title}
+            text={news.text}
+            banner={news.banner}
+            ok={handleUpdateNews}
+          />
         )}
         <Card
           main={true}

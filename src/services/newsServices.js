@@ -115,3 +115,19 @@ export async function deleteNews(id) {
     return error;
   }
 }
+
+export async function updateNews(id, data) {
+  try {
+    const response = await axios.patch(`${baseURL}/news/update/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+
+    const updatedNews = response.data.userUpdated;
+
+    return updatedNews;
+  } catch (error) {
+    return error;
+  }
+}
