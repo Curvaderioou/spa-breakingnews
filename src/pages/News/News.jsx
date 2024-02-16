@@ -2,12 +2,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { newsById, postComment, likeNews } from "../../services/newsServices";
+import {
+  newsById,
+  postComment,
+  likeNews,
+  getAllNewsByUser,
+} from "../../services/newsServices";
 import { HomeHeader } from "../Home/HomeStyled";
 import { Card } from "../../components/Card/Card";
 import { Comment } from "../../components/Comment/Comment";
 import { CommentSection, InputComment } from "./NewsStyled";
 import { z } from "zod";
+import { UserContext } from "../../Context/UserContent";
+import { userLogged } from "../../services/userServices";
+import Cookies from "js-cookie";
 
 // Schema de validação utilizando Zod
 const commentSchema = z
@@ -18,6 +26,7 @@ const commentSchema = z
 export function News() {
   const { id } = useParams();
   const [news, setNews] = useState({});
+  const [user, setUser] = useState(UserContext);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false); // Estado para controlar o envio do formulário
@@ -29,6 +38,14 @@ export function News() {
       setComments(newsResponse.data.comments || []);
     } catch (error) {
       console.error("Erro ao obter a notícia:", error);
+    }
+  }
+  async function findUserLogged() {
+    try {
+      const response = await userLogged();
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -52,6 +69,18 @@ export function News() {
       setIsSubmitting(false); // Define que o envio do formulário foi concluído
     }
   }
+  // async function checkUser() {
+  //   console.log("User:", user);
+  //   const newsUser = await newsById(id);
+  //   const newsUserId = newsUser.data.userId;
+  //   console.log("News User ID:", newsUserId);
+  //   console.log("User ID:", user._id);
+  //   if (user._id === newsUserId) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   async function handleLikeUpdated() {
     await getNewsById();
@@ -59,11 +88,13 @@ export function News() {
 
   useEffect(() => {
     getNewsById();
+    if (Cookies.get("token")) findUserLogged();
   }, [id]);
 
   return (
     <>
       <HomeHeader>
+        {/* {checkUser() && <button>Update</button>} */}
         <Card
           main={true}
           top={true}

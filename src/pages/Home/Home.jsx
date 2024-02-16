@@ -1,13 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { Card } from "../../components/Card/Card";
-import { Navbar } from "../../components/Navbar/Navbar";
-// import { news } from "../../Datas.jsx";
 import { getAllNews, getTopNews } from "../../services/newsServices.js";
 import { HomeBody, HomeHeader } from "./HomeStyled.jsx";
 import { useState } from "react";
-import Cookies from "js-cookie";
-import { Navigate } from "react-router-dom";
 
 export default function Home() {
   const [news, setNews] = useState([]);

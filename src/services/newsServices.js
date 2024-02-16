@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const baseURL = "https://api-breakingnews-xktz.onrender.com";
-// const baseURL = "http://localhost:3001";
+// const baseURL = "https://api-breakingnews-xktz.onrender.com";
+const baseURL = "http://localhost:3001";
 
 export function getAllNews() {
   const response = axios.get(`${baseURL}/news`);
@@ -87,5 +87,18 @@ export async function deleteComment(newsId, commentId) {
   } catch (error) {
     console.error("Erro ao excluir o comentário:", error);
     throw error;
+  }
+}
+
+export async function createNews(data) {
+  try {
+    const response = await axios.post(`${baseURL}/news/create`, data, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
   }
 }

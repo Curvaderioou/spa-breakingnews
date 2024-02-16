@@ -78,7 +78,7 @@ export function Card(props) {
               <h2>{props.title}</h2>
               <TextLimit
                 text={props.text}
-                limit={props.main ? Infinity : 100}
+                limit={props.main || props.top ? Infinity : 100}
               />
             </CardHeader>
             <CardFooter>
@@ -101,7 +101,8 @@ export function Card(props) {
               </div>
             </CardFooter>
           </div>
-          <img src={props.banner} alt="Imagem" />
+          {/* <Imagem src={props.banner}></Imagem> */}
+          <img src={props.banner} alt="" />
         </ArticleNews>
       </CardContainer>
     </div>

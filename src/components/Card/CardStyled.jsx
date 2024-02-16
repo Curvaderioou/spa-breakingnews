@@ -5,8 +5,8 @@ export const CardContainer = styled.section`
   position: relative;
   border-radius: ${(props) => (props.main ? ".3rem .3rem 0 0" : ".3rem")};
   width: 100%;
-  height: 100%;
-  max-height: ${(props) => (props.main ? "inherit" : "360px")};
+  height: ${(props) => (props.main || props.top ? "100%" : "220px")};
+  max-height: ${(props) => (props.main || props.top ? "inherit" : "360px")};
   box-shadow: 0px 0px 10px #b3b3b3;
   cursor: ${(props) => (props.main ? "default" : "pointer")};
   transition: 0.3s;
@@ -19,7 +19,7 @@ export const CardContainer = styled.section`
 export const ArticleNews = styled.article`
   display: flex;
   height: 100%;
-  & > div {
+  & > div:first-child {
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -30,8 +30,8 @@ export const ArticleNews = styled.article`
     border-radius: ${(props) =>
       props.main ? "0 .3rem 0 0" : "0 .3rem .3rem 0"};
     /* height: 100%; */
-    max-width: ${(props) => (props.main ? "100%" : "250px")};
-    min-width: ${(props) => (props.main ? "50%" : "250px")};
+    max-width: ${(props) => (props.main ? "100%" : "35%")};
+    min-width: ${(props) => (props.main ? "50%" : "35%")};
     object-fit: cover;
     object-position: center;
     margin-left: auto;
