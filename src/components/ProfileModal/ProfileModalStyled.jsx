@@ -16,20 +16,7 @@ export const ProfileModalStyled = styled.section`
     flex-direction: column;
     font-size: 1.2em;
   }
-  .user-att button,
-  form button {
-    background-color: var(--main);
-    max-width: fit-content;
-    margin: 0 auto;
-    padding: 5px 20px;
-    border-radius: 0.3em;
-    color: var(--light);
-    border: 1px solid var(--main);
-    &:hover {
-      background-color: var(--light);
-      color: var(--main);
-    }
-  }
+
   form {
     display: flex;
     flex-direction: column;

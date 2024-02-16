@@ -38,7 +38,7 @@ export function Profile() {
 
   useEffect(() => {
     findAllNewsByUser();
-  }, [user]);
+  }, [user, news]);
 
   return (
     <ProfileContainer>

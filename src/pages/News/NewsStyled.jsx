@@ -44,3 +44,64 @@ export const InputComment = styled.input`
     background-color: #d1d1d1;
   }
 `;
+
+export const Sure = styled.div`
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffbcbc;
+  padding: 20px;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  z-index: 3000;
+  h2 {
+    font-size: 1.2rem;
+  }
+  span {
+    color: red;
+  }
+  .guarda-btn {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  .btn:hover {
+    background-color: transparent;
+  }
+`;
+
+export const GuardaOpt = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+  .opt-btn {
+    font-size: 1.5rem;
+    color: gray;
+    &:hover {
+      color: #000;
+    }
+  }
+  .opt-div {
+    color: gray;
+    background-color: var(--light);
+    max-width: fit-content;
+    border-radius: 0.3rem;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    i {
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    i:hover {
+      color: #000;
+    }
+  }
+`;

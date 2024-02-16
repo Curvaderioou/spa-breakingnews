@@ -19,6 +19,7 @@ export const CardContainer = styled.section`
 export const ArticleNews = styled.article`
   display: flex;
   height: 100%;
+  min-height: ${(props) => (props.main || props.top ? "200px" : "inherit")};
   & > div:first-child {
     padding: 1rem;
     display: flex;
@@ -30,7 +31,8 @@ export const ArticleNews = styled.article`
     border-radius: ${(props) =>
       props.main ? "0 .3rem 0 0" : "0 .3rem .3rem 0"};
     /* height: 100%; */
-    max-width: ${(props) => (props.main ? "100%" : "35%")};
+    width: 100%;
+    max-width: ${(props) => (props.main ? "450px" : "35%")};
     min-width: ${(props) => (props.main ? "50%" : "35%")};
     object-fit: cover;
     object-position: center;

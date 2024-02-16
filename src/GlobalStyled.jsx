@@ -190,4 +190,24 @@ svg path {
  flex-direction: column;
  align-items: center;
 }
+.btn {
+  background-color: var(--main);
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 5px 20px;
+  border-radius: 0.3em;
+  color: var(--light);
+  border: 1px solid var(--main);
+  &:hover {
+    background-color: var(--light);
+    color: var(--main);
+  }
+}
+.btn-danger {
+  background-color: red;
+  border: 1px solid red;&:hover {
+    background-color: transparent;
+    color: red;
+  }
+}
 `;

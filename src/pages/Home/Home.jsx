@@ -18,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     findNews();
-  }, []);
+  }, [news]);
 
   return (
     <>

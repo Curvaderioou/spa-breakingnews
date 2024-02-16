@@ -32,7 +32,9 @@ export function ProfileModal(props) {
       {userAtt && (
         <div className="user-att">
           <h3>Usuário atualizado!</h3>
-          <button onClick={props.ok}>Ok</button>
+          <button onClick={props.ok} className="btn">
+            Ok
+          </button>
         </div>
       )}
       {!userAtt && (
@@ -57,7 +59,9 @@ export function ProfileModal(props) {
               name="background"
             />
           </div>
-          <button type="submit">Atualizar</button>{" "}
+          <button type="submit" className="btn">
+            Atualizar
+          </button>{" "}
         </form>
       )}
     </ProfileModalStyled>

@@ -22,20 +22,7 @@ export const NewsModalStyled = styled.section`
     max-width: 300px;
     padding: 20px;
   }
-  .user-att button,
-  form button {
-    background-color: var(--main);
-    max-width: fit-content;
-    margin: 0 auto;
-    padding: 5px 20px;
-    border-radius: 0.3em;
-    color: var(--light);
-    border: 1px solid var(--main);
-    &:hover {
-      background-color: var(--light);
-      color: var(--main);
-    }
-  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -45,6 +32,9 @@ export const NewsModalStyled = styled.section`
     padding: 20px;
     gap: 25px;
     width: 100%;
+    & > span {
+      /* background-color: ; */
+    }
     label {
       font-size: 1.1rem;
     }

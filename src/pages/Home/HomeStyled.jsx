@@ -12,6 +12,7 @@ export const HomeBody = styled.section`
 
 export const HomeHeader = styled.section`
   max-width: 1200px;
+  width: 100%;
   padding: 50px 20px 0px;
   margin: 0 auto;
 `;
